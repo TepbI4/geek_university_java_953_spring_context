@@ -5,8 +5,8 @@ import ru.geekbrains.alekseiterentev.model.Product;
 
 import java.util.List;
 
-public interface ProductRepository {
+public interface ClientRepository {
 
-    List<Product> findAllProducts();
-    Product findById(Long id);
+    List<Client> findAllClients();
+    Client findById(Long id);
 }

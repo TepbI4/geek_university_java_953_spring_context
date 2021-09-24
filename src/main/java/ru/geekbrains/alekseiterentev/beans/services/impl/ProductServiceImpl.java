@@ -1,19 +1,21 @@
 package ru.geekbrains.alekseiterentev.beans.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import ru.geekbrains.alekseiterentev.beans.repositories.ProductRepository;
 import ru.geekbrains.alekseiterentev.beans.services.ProductService;
 import ru.geekbrains.alekseiterentev.model.Product;
 
 import java.util.List;
 
-@Component
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository repository;
 
     @Autowired
+    @Qualifier("dbProductRepository")
     public void setRepository(ProductRepository repository) {
         this.repository = repository;
     }

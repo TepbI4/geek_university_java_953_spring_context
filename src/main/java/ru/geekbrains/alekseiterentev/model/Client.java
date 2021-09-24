@@ -13,35 +13,31 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name = "clients")
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "name")
     private String name;
-
-    @Column(name = "price")
-    private Integer price;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "clients_orders",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "client_id")
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private List<Client> clients;
+    private List<Product> products;
 
-    public Product() {
+    public Client() {
     }
 
-    public Product(Long id, String name, Integer price) {
+    public Client(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.price = price;
     }
 
     public Long getId() {
@@ -60,28 +56,19 @@ public class Product {
         this.name = name;
     }
 
-    public Integer getPrice() {
-        return price;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", price=" + price +
                 '}';
     }
 }
